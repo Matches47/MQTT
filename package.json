@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "encoding": "^0.1.13",
+    "mqtt": "^4.3.7"
+  }
+}
