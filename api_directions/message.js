@@ -1,42 +1,40 @@
 //* 導入 MQTT 模塊依賴項 *//
-var mqtt = require('mqtt');
+var mqtt = require("mqtt");
 
 //* 連線設定 Start //
 const connectUrl = `mqtt:192.168.1.217`;
 
-const option = {
+const options = {
     port: 1883,
-    clientID: 'nodejs',
-    username: 'MQTT',
-    password: 'MQTTPW'
+    clientID: "nodejs",
+    username: "MQTT",
+    password: "MQTTPW",
 };
 
-const client = mqtt.connect(connectUrl, option);
+const client = mqtt.connect(connectUrl, options);
 //* 連線設定 End //
-
 
 //* 連線監聽 Start *//
 
 //- 連線成功 Start -//
-client.on('connect', function() {
+client.on("connect", function () {
     console.group(`----- 連線已成功建立 -----`);
-    console.log(`連線類型: ${connectUrl.split(':')[0]}`);
-    console.log(`連線地址: ${connectUrl.split(':')[1]}`);
+    console.log(`連線類型: ${connectUrl.split(":")[0]}`);
+    console.log(`連線地址: ${connectUrl.split(":")[1]}`);
     console.groupEnd();
     //# 為了查看訊息有沒有成功發佈，所以訂閱一個與Publish主題相同的名稱 #//
-    client.subscribe('jdi/test/47', function(err) {
+    client.subscribe("jdi/test/47", function (err) {
         if (err) {
             console.log(err);
-        };
+        }
     });
 
     client.publish("jdi/test/47", "Type your message here.");
 });
 //- 連線成功 End -//
 
-
 //- 連線失敗 Start -//
-client.on('error', function(err) {
+client.on("error", function (err) {
     console.group(`----- 連線時發生錯誤 -----`);
     console.log(`[ 錯誤訊息-START ]`);
     console.log(err);
@@ -45,14 +43,13 @@ client.on('error', function(err) {
 });
 //- 連線失敗 End -//
 
-
 //- 接收訊息 Start -//
 
 //@ 「訊息(Message)」Event:on.( 'message', function( topic, message, packet ){} ) @//
 
 //! 基本的 'topic' & 'message' 已經使用很多次了，這裡不重複講解 !//
 //# packet 是一個數據包，是這封訊息的詳細資料，console 看下面 #//
-client.on('message', function(topic, message, packet) {
+client.on("message", function (topic, message, packet) {
     console.group(`-----  收到訂閱訊息  -----`);
     console.log(packet);
     console.groupEnd();

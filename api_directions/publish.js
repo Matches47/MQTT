@@ -1,35 +1,34 @@
 //* 導入 MQTT 模塊依賴項 *//
-var mqtt = require('mqtt');
+const mqtt = require("mqtt");
 
 //! 此頁註解只針對「發布(Publish)」說明，其餘說明請至 connection.js !//
 
 //* 連線設定 Start //
 const connectUrl = `mqtt:192.168.1.217`;
 
-const option = {
+const options = {
     port: 1883,
-    clientID: 'nodejs',
-    username: 'MQTT',
-    password: 'MQTTPW'
+    clientID: "nodejs",
+    username: "MQTT",
+    password: "MQTTPW",
 };
 
-const client = mqtt.connect(connectUrl, option);
+const client = mqtt.connect(connectUrl, options);
 //* 連線設定 End //
-
 
 //* 連線監聽 Start *//
 
 //- 連線成功 Start -//
-client.on('connect', function() {
+client.on("connect", function () {
     console.group(`----- 連線已成功建立 -----`);
-    console.log(`連線類型: ${connectUrl.split(':')[0]}`);
-    console.log(`連線地址: ${connectUrl.split(':')[1]}`);
+    console.log(`連線類型: ${connectUrl.split(":")[0]}`);
+    console.log(`連線地址: ${connectUrl.split(":")[1]}`);
     console.groupEnd();
     //# 為了查看訊息有沒有成功發佈，所以訂閱一個與Publish主題相同的名稱 #//
-    client.subscribe('jdi/test/47', function(err) {
+    client.subscribe("jdi/test/47", function (err) {
         if (err) {
             console.log(err);
-        };
+        }
     });
 
     //@ 「發佈(Publish)」Method:publish( topic, message, option, callback ) @//
@@ -40,10 +39,10 @@ client.on('connect', function() {
     client.publish("jdi/test/47", "Type your message here.");
 
     //# 養成好習慣，有 CallBack 都要使用 Function(error) 捕捉錯誤 #//
-    client.publish("jdi/test/47", "Type your message here.", function(error) {
+    client.publish("jdi/test/47", "Type your message here.", function (error) {
         if (error) {
             console.log(error);
-        };
+        }
     });
     //~ 訊息發佈設定(基本用法) End ~//
 
@@ -53,18 +52,22 @@ client.on('connect', function() {
     //! QoS(連線品質)在 'subscribe.js' 有解說了，這裡不重複講解 !//
     //# Retain是設定該條訊息「是否保留」，使用 True & False 設定，默認為 False #//
     //# 如果設定為
-    client.publish("jdi/test/47", "Type your message here.", { qos: 0, retain: false }, function(error) {
-        if (error) {
-            console.log(error);
-        };
-    });
+    client.publish(
+        "jdi/test/47",
+        "Type your message here.",
+        { qos: 0, retain: false },
+        function (error) {
+            if (error) {
+                console.log(error);
+            }
+        }
+    );
     //+ 訊息發佈設定(進階) End +//
 });
 //- 連線成功 End -//
 
-
 //- 連線失敗 Start -//
-client.on('error', function(err) {
+client.on("error", function (err) {
     console.group(`----- 連線時發生錯誤 -----`);
     console.log(`[ 錯誤訊息-START ]`);
     console.log(err);
@@ -73,12 +76,11 @@ client.on('error', function(err) {
 });
 //- 連線失敗 End -//
 
-
 //- 接收訊息 Start -//
-client.on('message', function(topic, message) {
+client.on("message", function (topic, message) {
     console.group(`-----  收到訂閱訊息  -----`);
-    console.log('主題名稱: ' + topic);
-    console.log('訊息內容: ' + message);
+    console.log("主題名稱: " + topic);
+    console.log("訊息內容: " + message);
     console.groupEnd();
 });
 //- 接收訊息 End -//

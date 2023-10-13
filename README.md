@@ -1,4 +1,4 @@
-# How to use MQTT in Node.js
+<img src="./image/MQTT.js.png" width="15%"/>
 
 ## Use npm to install MQTT.js client library
 
@@ -11,9 +11,7 @@ npm install mqtt --save
 </pre>
 
 
-## Node.js MQTT usage
-
-#### Import the MQTT.js client library.
+## Import the MQTT.js client library
 
 ```js
 const mqtt = require('mqtt')
