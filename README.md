@@ -17,25 +17,40 @@ npm install mqtt --save
 const mqtt = require('mqtt')
 ```
 
-#### Set MQTT Broker connection parameters & Write MQTT connect function.
-
-##### Chinese comments in code sample
+#### Code example
 <pre>
-connection.js
+./example/mqtt.js
+</pre>
+
+#### Directions for API-connect..
+
+<pre>
+./api_directions/connect.js
 </pre>
 
 
-#### Advanced function in subscribe to topic.
+#### Directions for API-subscribe.
 
-##### Chinese comments in code sample
 <pre>
-subscribe.js
+./api_directions/subscribe.js
 </pre>
 
 
-#### Advanced function in publish to broker.
+#### Directions for API-publish.
 
-##### Chinese comments in code sample
 <pre>
-publish.js
+./api_directions/publish.js
+</pre>
+
+#### Directions for API-message.
+
+<pre>
+./api_directions/message.js
+</pre>
+
+
+## How to set up the MQTT broker server on localhost ?
+
+<pre>
+MQTT_Broker.pdf
 </pre>
