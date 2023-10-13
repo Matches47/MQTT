@@ -1,6 +1,6 @@
 <img src="./image/MQTT.js.png" width="15%"/>
 
-## Use npm to install MQTT.js client library
+## Use npm to install MQTT.js client library.
 
 <pre>
 # create a new project
@@ -11,18 +11,18 @@ npm install mqtt --save
 </pre>
 
 
-## Import the MQTT.js client library
+## Import the MQTT.js client library.
 
 ```js
 const mqtt = require('mqtt')
 ```
 
-#### Code example
+#### Code example.
 <pre>
 ./example/mqtt.js
 </pre>
 
-#### Directions for API-connect..
+#### Directions for API-connect.
 
 <pre>
 ./api_directions/connect.js
