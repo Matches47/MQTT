@@ -9,6 +9,12 @@ client.on("connect", () => {
     });
 });
 
+client.on("error", function (err) {
+    if (err) {
+        console.log(err);
+    }
+});
+
 client.on("message", (topic, message) => {
     // message is Buffer
     console.log(message.toString());
